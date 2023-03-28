@@ -1,4 +1,5 @@
-pragma solidity 0.6.2;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import "./nf-token.sol";
 import "./erc721-metadata.sol";
@@ -27,11 +28,10 @@ contract NFTokenMetadata is
   mapping (uint256 => string) internal idToUri;
 
   /**
-   * @dev Contract constructor.
    * @notice When implementing this contract don't forget to set nftName and nftSymbol.
+   * @dev Contract constructor.
    */
   constructor()
-    public
   {
     supportedInterfaces[0x5b5e139f] = true; // ERC721Metadata
   }
@@ -76,15 +76,32 @@ contract NFTokenMetadata is
     validNFToken(_tokenId)
     returns (string memory)
   {
+    return _tokenURI(_tokenId);
+  }
+
+  /**
+   * @notice This is an internal function that can be overriden if you want to implement a different
+   * way to generate token URI.
+   * @param _tokenId Id for which we want uri.
+   * @return URI of _tokenId.
+   */
+  function _tokenURI(
+    uint256 _tokenId
+  )
+    internal
+    virtual
+    view
+    returns (string memory)
+  {
     return idToUri[_tokenId];
   }
 
   /**
-   * @dev Burns a NFT.
    * @notice This is an internal function which should be called from user-implemented external
    * burn function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
    * NFT.
+   * @dev Burns a NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
   function _burn(
@@ -96,17 +113,14 @@ contract NFTokenMetadata is
   {
     super._burn(_tokenId);
 
-    if (bytes(idToUri[_tokenId]).length != 0)
-    {
-      delete idToUri[_tokenId];
-    }
+    delete idToUri[_tokenId];
   }
 
   /**
-   * @dev Set a distinct URI (RFC 3986) for a given NFT ID.
    * @notice This is an internal function which should be called from user-implemented external
    * function. Its purpose is to show and properly initialize data structures when using this
    * implementation.
+   * @dev Set a distinct URI (RFC 3986) for a given NFT ID.
    * @param _tokenId Id for which we want URI.
    * @param _uri String representing RFC 3986 URI.
    */

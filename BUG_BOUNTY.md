@@ -8,13 +8,13 @@ The leaderboard will list all the contributors to this bounty.
 
 | Bug report | Severity | Researcher
 |-|-|-|
-| - | - | - |
+| #242 | Low severity | @sam-at-luther |
 
 ## Sponsors
 
 **Sponsor this bug bounty if you support ERC-721**. This means you will commit to paying researchers that demonstrate a problem. Contact us at [bounty@0xcert.org](mailto:bounty@0xcert.org) if interested. Thank you.
 
-[![0xcert](https://img.shields.io/badge/0xcert-50%20ETH-red.svg)](https://0xcert.org) [![William Entriken](https://img.shields.io/badge/William%20Entriken-5%20ETH-red.svg)](https://github.com/fulldecent) [![ERC-721 Bug Bounty Budget](https://img.shields.io/badge/ERC--721%20Bug%20Bounty%20Budget-55%20ETH-purple.svg)](https://etherscan.io/address/0xa2c60e9E1f6e6B2C16a6B8ECf3BdDAEf015C572b)
+[![0xcert](https://img.shields.io/badge/0xcert-1%20ETH-red.svg)](https://0xcert.org) [![William Entriken](https://img.shields.io/badge/William%20Entriken-1%20ETH-red.svg)](https://github.com/fulldecent) [![ERC-721 Bug Bounty Budget](https://img.shields.io/badge/ERC--721%20Bug%20Bounty%20Budget-2%20ETH-purple.svg)](https://etherscan.io/address/0xa2c60e9E1f6e6B2C16a6B8ECf3BdDAEf015C572b)
 
 Become a sponsor and be listed here as a contributor to the bug bounty fund: `0xa2c60e9E1f6e6B2C16a6B8ECf3BdDAEf015C572b`.
 
@@ -79,7 +79,7 @@ How to win:
 
 - Be descriptive and detailed when describing your issue
 - Fix it — recommend a way to solve the problem
-- Include a [Specron test](https://specron.github.io/framework/) case that we can reproduce
+- Include a [Hardhat test](https://hardhat.org/) case that we can reproduce
 
 Rules for bounty sponsor:
 

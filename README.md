@@ -1,10 +1,11 @@
-![Build Status](https://travis-ci.org/0xcert/ethereum-erc721.svg?branch=master)&nbsp;[![NPM Version](https://badge.fury.io/js/@0xcert%2Fethereum-erc721.svg)](https://www.npmjs.com/package/@0xcert/ethereum-erc721)&nbsp;[![Dependencies Status](https://david-dm.org/0xcert/ethereum-erc721.svg)](https://david-dm.org/0xcert/ethereum-erc721)&nbsp;[![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/0xcert/ethereum-erc721/blob/master/BUG_BOUNTY.md)
+![Build Status](https://travis-ci.org/0xcert/ethereum-erc721.svg?branch=master)&nbsp;[![codecov](https://codecov.io/gh/0xcert/ethereum-erc721/branch/master/graph/badge.svg?token=F0tgRHyWSM)](https://codecov.io/gh/0xcert/ethereum-erc721)&nbsp;[![NPM Version](https://badge.fury.io/js/@0xcert%2Fethereum-erc721.svg)](https://www.npmjs.com/package/@0xcert/ethereum-erc721)&nbsp;[![Dependencies Status](https://david-dm.org/0xcert/ethereum-erc721.svg)](https://david-dm.org/0xcert/ethereum-erc721)&nbsp;[![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/0xcert/ethereum-erc721/blob/master/BUG_BOUNTY.md)
 
 # ERC-721 Token — Reference Implementation
 
-This is the complete reference implementation of the [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) non-fungible token standard for the Ethereum and Wanchain blockchains. This is an open-source project, complete with [Specron](https://specron.github.io/framework/) testing.
+This is the complete reference implementation of the [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) non-fungible token standard for the Ethereum and Wanchain blockchains. It is also compatible with other EVM compatible chains like Binance Smart Chain (BSC), Avalanche (AVAX) etc. This is an open-source project, complete with [Hardhat](https://hardhat.org/) testing.
 
 The purpose of this implementation is to provide a good starting point for anyone who wants to use and develop non-fungible tokens on the Ethereum and Wanchain blockchains. Instead of re-implementing the ERC-721 yourself you can use this code which has gone through multiple audits and we hope it will be extensively used by the community in the future.
+Note that this implementation is more restrictive then the ERC-721 standard since it does not support `payable` function calls out of the box. You are however free to add this yourself.
 
 If you are looking for a more feature-rich and advanced ERC721 implementation, then check out the [0xcert Framework](https://github.com/0xcert/framework).
 
@@ -24,7 +25,7 @@ There are also test mocks that can be seen [here](src/tests/mocks). These are sp
 
 ## Requirements
 
-* NodeJS 9.0+ is supported
+* NodeJS 12+ is supported
 * Windows, Linux or macOS
 
 ## Installation
@@ -77,7 +78,8 @@ You have created and have possession of unique glass-blown artwork (each having 
 To do this, simply paste the code below into Remix and deploy the smart contract. You will "mint" a token for each new piece of artwork you want to see. Then you will "burn" that token when you surrender physical possession of the piece.
 
 ```solidity
-pragma solidity 0.6.2;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import "https://github.com/0xcert/ethereum-erc721/src/contracts/tokens/nf-token-metadata.sol";
 import "https://github.com/0xcert/ethereum-erc721/src/contracts/ownership/ownable.sol";
@@ -94,7 +96,6 @@ contract MyArtSale is
    * @dev Contract constructor. Sets metadata extension `name` and `symbol`.
    */
   constructor()
-    public
   {
     nftName = "Frank's Art Sale";
     nftSymbol = "FAS";
@@ -122,6 +123,10 @@ contract MyArtSale is
 ```
 
 *You should contact a lawyer before holding an auction, or selling anything. Specifically, laws for auctions vary wildly by jurisdiction. This application is provided only as an example of the technology and is not legal advice.*
+
+## Validation
+
+You can check the validity of the smart contract, the correctness of the implementation and the supported functions of the respective smart contract using the online validator at https://erc721validator.org/.
 
 ## Playground
 

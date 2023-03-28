@@ -1,4 +1,5 @@
-pragma solidity 0.6.2;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 /**
  * @dev ERC-721 non-fungible token standard.
@@ -41,13 +42,14 @@ interface ERC721
   );
 
   /**
-   * @dev Transfers the ownership of an NFT from one address to another address.
    * @notice Throws unless `msg.sender` is the current owner, an authorized operator, or the
    * approved address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is
    * the zero address. Throws if `_tokenId` is not a valid NFT. When transfer is complete, this
    * function checks if `_to` is a smart contract (code size > 0). If so, it calls
    * `onERC721Received` on `_to` and throws if the return value is not
    * `bytes4(keccak256("onERC721Received(address,uint256,bytes)"))`.
+   * @dev Transfers the ownership of an NFT from one address to another address. This function can
+   * be changed to payable.
    * @param _from The current owner of the NFT.
    * @param _to The new owner.
    * @param _tokenId The NFT to transfer.
@@ -62,9 +64,10 @@ interface ERC721
     external;
 
   /**
-   * @dev Transfers the ownership of an NFT from one address to another address.
    * @notice This works identically to the other function with an extra data parameter, except this
    * function just sets data to ""
+   * @dev Transfers the ownership of an NFT from one address to another address. This function can
+   * be changed to payable.
    * @param _from The current owner of the NFT.
    * @param _to The new owner.
    * @param _tokenId The NFT to transfer.
@@ -77,11 +80,11 @@ interface ERC721
     external;
 
   /**
+   * @notice The caller is responsible to confirm that `_to` is capable of receiving NFTs or else
+   * they may be permanently lost.
    * @dev Throws unless `msg.sender` is the current owner, an authorized operator, or the approved
    * address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is the zero
-   * address. Throws if `_tokenId` is not a valid NFT.
-   * @notice The caller is responsible to confirm that `_to` is capable of receiving NFTs or else
-   * they mayb be permanently lost.
+   * address. Throws if `_tokenId` is not a valid NFT.  This function can be changed to payable.
    * @param _from The current owner of the NFT.
    * @param _to The new owner.
    * @param _tokenId The NFT to transfer.
@@ -94,10 +97,10 @@ interface ERC721
     external;
 
   /**
-   * @dev Set or reaffirm the approved address for an NFT.
    * @notice The zero address indicates there is no approved address. Throws unless `msg.sender` is
    * the current NFT owner, or an authorized operator of the current owner.
    * @param _approved The new approved NFT controller.
+   * @dev Set or reaffirm the approved address for an NFT. This function can be changed to payable.
    * @param _tokenId The NFT to approve.
    */
   function approve(
@@ -107,9 +110,9 @@ interface ERC721
     external;
 
   /**
+   * @notice The contract MUST allow multiple operators per owner.
    * @dev Enables or disables approval for a third party ("operator") to manage all of
    * `msg.sender`'s assets. It also emits the ApprovalForAll event.
-   * @notice The contract MUST allow multiple operators per owner.
    * @param _operator Address to add to the set of authorized operators.
    * @param _approved True if the operators is approved, false to revoke approval.
    */
@@ -122,6 +125,7 @@ interface ERC721
   /**
    * @dev Returns the number of NFTs owned by `_owner`. NFTs assigned to the zero address are
    * considered invalid, and this function throws for queries about the zero address.
+   * @notice Count all NFTs assigned to an owner.
    * @param _owner Address for whom to query the balance.
    * @return Balance of _owner.
    */
@@ -133,8 +137,9 @@ interface ERC721
     returns (uint256);
 
   /**
-   * @dev Returns the address of the owner of the NFT. NFTs assigned to zero address are considered
-   * invalid, and queries about them do throw.
+   * @notice Find the owner of an NFT.
+   * @dev Returns the address of the owner of the NFT. NFTs assigned to the zero address are
+   * considered invalid, and queries about them do throw.
    * @param _tokenId The identifier for an NFT.
    * @return Address of _tokenId owner.
    */
@@ -146,8 +151,8 @@ interface ERC721
     returns (address);
 
   /**
-   * @dev Get the approved address for a single NFT.
    * @notice Throws if `_tokenId` is not a valid NFT.
+   * @dev Get the approved address for a single NFT.
    * @param _tokenId The NFT to find the approved address for.
    * @return Address that _tokenId is approved for.
    */
@@ -159,6 +164,7 @@ interface ERC721
     returns (address);
 
   /**
+   * @notice Query if an address is an authorized operator for another address.
    * @dev Returns true if `_operator` is an approved operator for `_owner`, false otherwise.
    * @param _owner The address that owns the NFTs.
    * @param _operator The address that acts on behalf of the owner.

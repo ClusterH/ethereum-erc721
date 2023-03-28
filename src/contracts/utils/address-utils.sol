@@ -1,10 +1,11 @@
-pragma solidity 0.6.2;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 /**
- * @dev Utility library of inline functions on addresses.
  * @notice Based on:
  * https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol
  * Requires EIP-1052.
+ * @dev Utility library of inline functions on addresses.
  */
 library AddressUtils
 {
